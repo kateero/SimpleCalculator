@@ -15,16 +15,9 @@ public class Calculator {
         return a*b;
     }
   
-    public String divide(double a, double b) {
-        String message;
-        double result;
-        try {
-            result = a/b;
-            message = String.valueOf(result);
-        } catch (ArithmeticException e) {
-            message = "You can't divide by 0!";
-        }
-        return message;
+    public double divide(double a, double b) {
+        double result=0;
+        return a/b;
     }
     
 }
