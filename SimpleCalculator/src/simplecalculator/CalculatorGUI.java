@@ -10,11 +10,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-
 public class CalculatorGUI {
 
     public CalculatorGUI() {
-       
+
         JFrame frame = new JFrame("Êàëüêóëÿòîð");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(500, 300);
@@ -29,7 +28,6 @@ public class CalculatorGUI {
         JButton substract = new JButton("-");
         JButton divide = new JButton("/");
         JButton multiply = new JButton("*");
-        
 
         panel.add(a);
         panel.add(b);
@@ -71,24 +69,21 @@ public class CalculatorGUI {
         divide.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            try {
-                double answer = calculate.divide(Double.parseDouble(a.getText()), Double.parseDouble(b.getText()));
-                result.setText(String.valueOf(answer));
-            } catch (ArithmeticException ex) {
-                JOptionPane.showMessageDialog(frame,"You can't divide by 0!","OK", JOptionPane.ERROR_MESSAGE);
-            }
+                if (Double.parseDouble(b.getText()) == 0) {
+                    JOptionPane.showMessageDialog(frame, "You can't divide by 0!", "OK", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    double answer = calculator.divide(Double.parseDouble(a.getText()), Double.parseDouble(b.getText()));
+                    result.setText(String.valueOf(answer));
+                }
             }
         });
-        
+
         multiply.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            try {
-                double answer = calculate.multiply(Double.parseDouble(a.getText()), Double.parseDouble(b.getText()));
+
+                double answer = calculator.multiply(Double.parseDouble(a.getText()), Double.parseDouble(b.getText()));
                 result.setText(String.valueOf(answer));
-            } catch (ArithmeticException ex) {
-                JOptionPane.showMessageDialog(frame,"You can't divide by 0!","OK", JOptionPane.ERROR_MESSAGE);
-            }
             }
         });
 
