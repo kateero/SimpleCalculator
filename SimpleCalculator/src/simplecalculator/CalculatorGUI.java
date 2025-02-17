@@ -10,38 +10,63 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class CalculatorGUI extends JFrame{
-    Calculator calculate = new Calculator();
-    //кнопки с вызовом операций, полями для задания данных и полем для вывода результата операции
-    public void CalculatorGUI(){
-        
-        
-        JFrame frame = new JFrame("Калькулятор");
+
+public class CalculatorGUI {
+
+    public CalculatorGUI() {
+       
+        JFrame frame = new JFrame("ГЉГ Г«ГјГЄГіГ«ГїГІГ®Г°");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(300, 200);
+        frame.setSize(500, 300);
         frame.setLocationRelativeTo(null);
-       // pack();
-        
-        JPanel panel = new JPanel(new GridLayout(2,4));
+
+        JPanel panel = new JPanel(new GridLayout(2, 4));
         JTextField a = new JTextField(10);
         JTextField b = new JTextField(10);
         JTextField result = new JTextField(10);
-        
+
+        JButton add = new JButton("+");
+        JButton substract = new JButton("-");
         JButton divide = new JButton("/");
         JButton multiply = new JButton("*");
         
+
         panel.add(a);
         panel.add(b);
         panel.add(result);
         panel.add(new JLabel(""));
-        panel.add(new JLabel(""));
-        panel.add(new JLabel(""));
+        panel.add(add);
+        panel.add(substract);
         panel.add(divide);
         panel.add(multiply);
-        
-        
+
         frame.getContentPane().add(panel);
+
+        Calculator calculator = new Calculator();
+
         frame.setVisible(true);
+
+        add.addActionListener(
+                new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e
+            ) {
+                double res = calculator.add(Double.parseDouble(a.getText()), Double.parseDouble(b.getText()));
+                result.setText(String.valueOf(res));
+            }
+        }
+        );
+
+        substract.addActionListener(
+                new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e
+            ) {
+                double res = calculator.substract(Double.parseDouble(a.getText()), Double.parseDouble(b.getText()));
+                result.setText(String.valueOf(res));
+            }
+        }
+        );
 
         divide.addActionListener(new ActionListener() {
             @Override
@@ -66,5 +91,6 @@ public class CalculatorGUI extends JFrame{
             }
             }
         });
+
     }
 }
