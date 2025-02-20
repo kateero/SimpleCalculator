@@ -73,14 +73,16 @@ public class CalculatorGUI {
         divide.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (Double.parseDouble(b.getText()) == 0) {
-                    JOptionPane.showMessageDialog(frame, "You can't divide by 0!", "OK", JOptionPane.ERROR_MESSAGE);
-                } else {
-                    if (areNumbers(a, b)) {
+                if (areNumbers(a, b)) {
+                    if (Double.parseDouble(b.getText()) == 0) {
+                        JOptionPane.showMessageDialog(frame, "You can't divide by 0!", "OK", JOptionPane.ERROR_MESSAGE);
+                    }
+                    else {
                         double answer = calculator.divide(Double.parseDouble(a.getText()), Double.parseDouble(b.getText()));
                         result.setText(String.valueOf(answer));
                     }
                 }
+
             }
         });
 
