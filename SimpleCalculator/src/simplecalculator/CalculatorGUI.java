@@ -23,8 +23,11 @@ public class CalculatorGUI {
 
         JPanel panel = new JPanel(new GridLayout(2, 4));
         JTextField a = new JTextField(10);
+        a.setFont(new Font("Lato", Font.PLAIN, 20));
         JTextField b = new JTextField(10);
+        b.setFont(new Font("Lato", Font.PLAIN, 20));
         JTextField result = new JTextField(10);
+        result.setFont(new Font("Lato", Font.PLAIN, 20));
 
         JButton add = new JButton("+");
         add.setBackground(Color.getHSBColor(0.97f, 0.3f, 1.0f));
