@@ -14,7 +14,7 @@ public class CalculatorGUI {
 
     public CalculatorGUI() {
 
-        JFrame frame = new JFrame("Êàëüêóëÿòîð");
+        JFrame frame = new JFrame("Simple calculator");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(500, 300);
         frame.setLocationRelativeTo(null);
@@ -49,8 +49,10 @@ public class CalculatorGUI {
             @Override
             public void actionPerformed(ActionEvent e
             ) {
-                double res = calculator.add(Double.parseDouble(a.getText()), Double.parseDouble(b.getText()));
-                result.setText(String.valueOf(res));
+                if (areNumbers(a, b)) {
+                    double res = calculator.add(Double.parseDouble(a.getText()), Double.parseDouble(b.getText()));
+                    result.setText(String.valueOf(res));
+                }
             }
         }
         );
@@ -60,8 +62,10 @@ public class CalculatorGUI {
             @Override
             public void actionPerformed(ActionEvent e
             ) {
-                double res = calculator.substract(Double.parseDouble(a.getText()), Double.parseDouble(b.getText()));
-                result.setText(String.valueOf(res));
+                if (areNumbers(a, b)) {
+                    double res = calculator.substract(Double.parseDouble(a.getText()), Double.parseDouble(b.getText()));
+                    result.setText(String.valueOf(res));
+                }
             }
         }
         );
@@ -72,8 +76,10 @@ public class CalculatorGUI {
                 if (Double.parseDouble(b.getText()) == 0) {
                     JOptionPane.showMessageDialog(frame, "You can't divide by 0!", "OK", JOptionPane.ERROR_MESSAGE);
                 } else {
-                    double answer = calculator.divide(Double.parseDouble(a.getText()), Double.parseDouble(b.getText()));
-                    result.setText(String.valueOf(answer));
+                    if (areNumbers(a, b)) {
+                        double answer = calculator.divide(Double.parseDouble(a.getText()), Double.parseDouble(b.getText()));
+                        result.setText(String.valueOf(answer));
+                    }
                 }
             }
         });
@@ -81,11 +87,27 @@ public class CalculatorGUI {
         multiply.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                double answer = calculator.multiply(Double.parseDouble(a.getText()), Double.parseDouble(b.getText()));
-                result.setText(String.valueOf(answer));
+                if (areNumbers(a, b)) {
+                    double answer = calculator.multiply(Double.parseDouble(a.getText()), Double.parseDouble(b.getText()));
+                    result.setText(String.valueOf(answer));
+                }
             }
         });
 
+    }
+
+    private boolean areNumbers(JTextField value1, JTextField value2) {
+        boolean flag;
+        try {
+            double checked1 = Double.parseDouble(value1.getText());
+            double checked2 = Double.parseDouble(value2.getText());
+            flag = true;
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Only numbers are allowed!", "Ok", JOptionPane.ERROR_MESSAGE);
+            value1.setText(null);
+            value2.setText(null);
+            flag = false;
+        }
+        return flag;
     }
 }
