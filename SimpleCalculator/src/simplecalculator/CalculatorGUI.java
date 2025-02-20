@@ -1,5 +1,7 @@
 package simplecalculator;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,9 +27,20 @@ public class CalculatorGUI {
         JTextField result = new JTextField(10);
 
         JButton add = new JButton("+");
+        add.setBackground(Color.getHSBColor(0.97f, 0.3f, 1.0f));
+        add.setFont(new Font("Lato", Font.PLAIN, 25));
+
         JButton substract = new JButton("-");
+        substract.setBackground(Color.getHSBColor(0.17f, 0.35f, 1.0f));
+        substract.setFont(new Font("Lato", Font.PLAIN, 25));
+
         JButton divide = new JButton("/");
+        divide.setBackground(Color.getHSBColor(0.58f, 0.3f, 1.0f));
+        divide.setFont(new Font("Lato", Font.PLAIN, 25));
+
         JButton multiply = new JButton("*");
+        multiply.setBackground(Color.getHSBColor(0.83f, 0.3f, 1.0f));
+        multiply.setFont(new Font("Lato", Font.PLAIN, 25));
 
         panel.add(a);
         panel.add(b);
@@ -76,8 +89,7 @@ public class CalculatorGUI {
                 if (areNumbers(a, b)) {
                     if (Double.parseDouble(b.getText()) == 0) {
                         JOptionPane.showMessageDialog(frame, "You can't divide by 0!", "OK", JOptionPane.ERROR_MESSAGE);
-                    }
-                    else {
+                    } else {
                         double answer = calculator.divide(Double.parseDouble(a.getText()), Double.parseDouble(b.getText()));
                         result.setText(String.valueOf(answer));
                     }
